@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme in dark mode. -->
+    <style name="Theme.ARStreamer" parent="android:Theme.Material.NoActionBar">
+        <!-- Ensure status bar/navigation bar colors are handled by Compose Theme -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Dark theme usually implies dark status/nav bar backgrounds, so light icons -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+    </style>
+</resources>

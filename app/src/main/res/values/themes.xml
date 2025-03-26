@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ARStreamer" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- Using NoActionBar as Compose handles the UI -->
+        <!-- Ensure status bar/navigation bar colors are handled by Compose Theme -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item> <!-- Light status bar icons for light theme -->
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item> <!-- Light nav bar icons for light theme -->
+    </style>
+
+    <!-- Optional: Define a Splash Screen Theme -->
+    <!--
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+       <item name="windowSplashScreenBackground">@color/...</item>
+       <item name="windowSplashScreenAnimatedIcon">@drawable/...</item>
+       <item name="postSplashScreenTheme">@style/Theme.ARStreamer</item>
+   </style>
+   -->
+</resources>

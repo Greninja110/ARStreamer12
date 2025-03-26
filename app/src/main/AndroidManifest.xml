@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Needed for audio streaming -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Needed for NSD/IP Address -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA"/> <!-- Required for Android 14+ -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/> <!-- Required for Android 14+ -->
+
+    <!-- Declare features -->
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.ar" android:required="true" />
+    <uses-feature android:name="android.hardware.wifi" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ARStreamer"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="34">
+        <!-- Moved tools:targetApi INSIDE the tag before the closing > -->
+        <!-- The comment was moved outside or removed, or placed correctly like this -->
+        <!-- android:usesCleartextTraffic is necessary for local HTTP/WebSocket connection without SSL -->
+
+        <!-- ARCore Requirement -->
+        <meta-data android:name="com.google.ar.core" android:value="required" /> <!-- Use "optional" if you want the app to run without ARCore -->
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/Theme.ARStreamer">
+            <!-- Note: Theme here might be redundant if the application theme is sufficient -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Foreground Service -->
+        <service
+            android:name=".service.StreamingService"
+            android:exported="false"
+            android:foregroundServiceType="camera|microphone" /> <!-- Specify types -->
+
+    </application>
+    <!-- The closing </application> tag now correctly wraps activity and service -->
+
+</manifest>
+    <!-- The closing </manifest> tag -->
